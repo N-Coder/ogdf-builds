@@ -33,7 +33,7 @@ setuptools.setup(
                 "-DDOC_INSTALL=OFF",
                 "-DCMAKE_BUILD_TYPE=Debug",
                 "-DOGDF_USE_ASSERT_EXCEPTIONS=ON",
-                "-DOGDF_USE_ASSERT_EXCEPTIONS_WITH_STACK_TRACE=ON_LIBUNWIND",
+                # "-DOGDF_USE_ASSERT_EXCEPTIONS_WITH_STACK_TRACE=ON_LIBUNWIND",
             ],
         ),
     ],

@@ -16,8 +16,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install apt packages
-        run: sudo apt-get install build-essential cmake libunwind-dev
+      # - name: Install apt packages
+      #   run: sudo apt-get install build-essential cmake libunwind-dev
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.1.1

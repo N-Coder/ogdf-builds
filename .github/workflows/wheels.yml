@@ -8,16 +8,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
-        # , windows-2019, macos-10.15]
+        os: [ubuntu-20.04, windows-2019, macos-10.15]
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
 
-      # - name: Install apt packages
-      #   run: sudo apt-get install build-essential cmake libunwind-dev
+      - name: Install apt packages
+        run: sudo apt-get install build-essential cmake libunwind-dev
+        if: runner.os == 'Linux'
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.1.1

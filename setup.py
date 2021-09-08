@@ -5,6 +5,17 @@ from pathlib import Path
 import cmake_build_extension
 import setuptools
 
+try:
+    # force this package to be interpreter and abi independent
+    # https://newbedev.com/how-to-force-a-python-wheel-to-be-platform-specific-when-building-it
+    from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
+    class bdist_wheel(_bdist_wheel):
+        def get_tag(self):
+            impl, abi, plat = _bdist_wheel.get_tag(self)
+            return ('py3', 'none', plat)
+except ImportError:
+    bdist_wheel = None
+
 init_py = """
 import pathlib
 
@@ -40,5 +51,6 @@ setuptools.setup(
     cmdclass=dict(
         # Enable the CMakeExtension entries defined above
         build_ext=cmake_build_extension.BuildExtension,
+        bdist_wheel=bdist_wheel
     ),
 )
